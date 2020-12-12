@@ -179,7 +179,7 @@ namespace Cuahangbandoanvat.GUI
             Console.WriteLine("Nhap thong tin loai hang muon xoa");
             Console.Write("Ma loai hang :");
             string maLH = Console.ReadLine();
-            lhBUS.XoaLH(maLH);
+            lhBUS.XoaLH(maLH);//
             Console.WriteLine("Da xoa loai hang!!!");
         }
     }
