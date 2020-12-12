@@ -51,6 +51,7 @@
     <Compile Include="DAL\HoaDonDAL.cs" />
     <Compile Include="DAL\KhachHangDAL.cs" />
     <Compile Include="DAL\LoaiHangDAL.cs" />
+    <Compile Include="DAL\ThongkeDAL.cs" />
     <Compile Include="GUI\HangHoaGUI.cs" />
     <Compile Include="GUI\HoaDonGUI.cs" />
     <Compile Include="GUI\KhachHangGUI.cs" />

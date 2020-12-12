@@ -13,10 +13,10 @@ namespace Cuahangbandoanvat.GUI
         private LoaiHangGUI lhGUI = new LoaiHangGUI();
         public void HienMENU()
         {
-            Console.Clear();
             bool kt = false;
             while (! kt)
             {
+                Console.Clear();
                 Console.WriteLine("QUAN LY HANG HOA");
                 Console.WriteLine("1.Hien thi hang hoa");
                 Console.WriteLine("2.Them hang hoa");
@@ -25,19 +25,16 @@ namespace Cuahangbandoanvat.GUI
                 Console.WriteLine("5.Tim kiem hang hoa");
                 Console.WriteLine("6.Quay lai");
                 Console.Write("Ban chon :");
-                string s = Console.ReadLine();
+                char key = char.ToUpper(Console.ReadKey(true).KeyChar);
 
-                switch (s)
+                switch (key)
                 {
-                    case "1":HienHangHoa();Console.ReadKey();break;
-                    case "2":ThemHangHoa();Console.ReadKey();break;
-                    case "3":SuaHangHoa();Console.ReadKey();break;
-                    case "4":XoaHangHoa();Console.ReadKey();break;
-                    case "5":TimKiemHangHoa();Console.ReadKey();break;
-                    case "6":kt = true;break;
-                    default:
-                        Console.WriteLine("Khong hop le");
-                        break;
+                    case '1':HienHangHoa();Console.ReadKey();break;
+                    case '2':ThemHangHoa();Console.ReadKey();break;
+                    case '3':SuaHangHoa();Console.ReadKey();break;
+                    case '4':XoaHangHoa();Console.ReadKey();break;
+                    case '5':TimKiemHangHoa();Console.ReadKey();break;
+                    case '6':kt = true;break;
                 }
             }
         }
@@ -52,10 +49,11 @@ namespace Cuahangbandoanvat.GUI
         public void TimKiemHangHoa()
         {
             Console.WriteLine("Nhap thong tin hang hoa can tim kiem");
-            Console.Write("Nhap ma hang hoa ban muon tim:");
-            string maHH = Console.ReadLine();
+            Console.Write("Nhap  hang hoa ban muon tim:");
+            string s = Console.ReadLine();
             Console.WriteLine("hang hoa ban muon tim");
-            //hhBUS.Timkiem(maHH);
+            Console.WriteLine(hhBUS.Timkiem(s));
+            
         }
         public void ThemHangHoa()
         {
@@ -69,24 +67,36 @@ namespace Cuahangbandoanvat.GUI
             {
                 Console.WriteLine(s);
             }
-            Console.Write("Nhap ma hang hoa:");
-            string maHH = Console.ReadLine();
+            string maHH = "";
+            while (maHH == "" || hhBUS.KiemTra(maHH)=="X")
+            {
+                Random r = new Random();
+                int i = r.Next(0, 100);
+                maHH = "MH"+i;
+            }
             Console.Write("Nhap ten hang hoa:");
             string tenHH = Console.ReadLine();
-            Console.Write("Nhap gia ban:");
+            while (tenHH == "")
+            {
+                Console.WriteLine("Khong duoc khac rong,moi ban nhap lai!!");
+                Console.Write("Nhap ten hang hoa:");
+                tenHH = Console.ReadLine();   
+            }
             double giaban = 0;
-            while (giaban == 0)
+            while (giaban <= 0)
             {
                 try
                 {
+                    Console.Write("Nhap gia ban:");
                     giaban = double.Parse(Console.ReadLine());
+
                 }
                 catch
                 {
-                    Console.Write("Khong hop le, moi ban nhap lai gia ban:");
+                    Console.WriteLine("Khong hop le, moi ban nhap lai gia ban!!");
                 }
             }
-            hhBUS.Them(maHH, tenHH, maLH, giaban);
+            hhBUS.Them(maHH, tenHH,hhBUS.Layloaihang(maLH), giaban);
             Console.WriteLine("Da them thanh cong");
         }
         public void SuaHangHoa()
@@ -96,25 +106,15 @@ namespace Cuahangbandoanvat.GUI
             Console.Write("Nhap loai hang ban muon sua:");
             string maLH = Console.ReadLine();
             Console.Clear();
-            Console.Write("Nhap ma hang hoa moi :");
+            Console.WriteLine("Danh sach mat hang");
+            Console.WriteLine(hhBUS.Laydsmathangtheoloaihang(hhBUS.Layloaihang(maLH)));
+            Console.Write("Nhap ma hang hoa can sua :");
             string maHH = Console.ReadLine();
             Console.Write("Nhap ten hang hoa moi :");
             string tenHH = Console.ReadLine();
             Console.Write("Nhap gia ban moi:");
-            double giaban = 0;
-            while(giaban == 0)
-            {
-                try
-                {
-                    giaban = double.Parse(Console.ReadLine());
-                }
-                catch
-                {
-                    Console.WriteLine("");
-                }
-            }
-            
-            hhBUS.Sua(maHH, tenHH, maLH, giaban);
+            double giaban = double.Parse(Console.ReadLine());
+            hhBUS.Sua(maHH, tenHH,hhBUS.Layloaihang(maLH), giaban);
             Console.WriteLine("Da cap nhat thanh cong");
         }
         public void XoaHangHoa()
@@ -124,10 +124,8 @@ namespace Cuahangbandoanvat.GUI
             Console.Write("Nhap loai hang :");
             string maLH = Console.ReadLine();
             Console.Clear();
-            foreach(string s in hhBUS.LayDanhSach())
-            {
-                Console.WriteLine(s);
-            }
+            Console.WriteLine("Danh sach loai hang {0}", hhBUS.Layloaihang(maLH));
+            Console.WriteLine(hhBUS.Laydsmathangtheoloaihang(hhBUS.Layloaihang(maLH)));
             Console.Write("Nhap ma hang hoa ban muon xoa:");
             string maHH = Console.ReadLine();
             hhBUS.Xoa(maHH);

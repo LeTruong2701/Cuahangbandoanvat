@@ -18,13 +18,17 @@ namespace Cuahangbandoanvat.BUS
         {
             khDAL.Xoa(maKH);
         }
-        public void Sua(string maKH, string tenKH, string diachiKH, int sdtKH)
+        public void Sua(string maKH, string tenKH, double sdtKH, string diachiKH)
         {
-            khDAL.Sua(maKH, tenKH, diachiKH, sdtKH);
+            khDAL.Sua(maKH, tenKH,sdtKH,diachiKH);
         }
-        public void ThemKH(string maKH,string tenKH,string diachiKH,int sdtKH)
+        public void ThemKH(string maKH,string tenKH, double sdtKH, string diachiKH)
         {
-            khDAL.ThemKH(maKH, tenKH, diachiKH, sdtKH);
+            khDAL.ThemKH(maKH, tenKH,sdtKH ,diachiKH);
+        }
+        public string Timkiem(string maKH)
+        {
+            return khDAL.Timkiem(maKH);
         }
     }
 }

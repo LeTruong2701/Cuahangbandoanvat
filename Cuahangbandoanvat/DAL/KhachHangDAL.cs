@@ -12,6 +12,7 @@ namespace Cuahangbandoanvat.DAL
         private static string file = "khachhang.txt";
         private static string file_hoadon = "hoadon.txt";
         private static string file_hoadonchitiet = "hoadonchitiet.txt";
+        private HoaDonDAL hdDAL = new HoaDonDAL();
         public List<String> Laydanhsach()
         {
             StreamReader sr = new StreamReader(file);
@@ -23,6 +24,7 @@ namespace Cuahangbandoanvat.DAL
                 String[] tmp = s.Split('#');
 
                 String kq = tmp[0] + "\t" + tmp[1]+"\t"+tmp[2]+"\t"+tmp[3];
+
                 ds.Add(kq);
             }
 
@@ -78,7 +80,7 @@ namespace Cuahangbandoanvat.DAL
             sw3.Close();
 
         }
-        public void Sua(string maKH,string tenKH,string diachiKH,int sdtKH)
+        public void Sua(string maKH,string tenKH,double sdtKH, string diachiKH)
         {
             string kq = "";
             string s;
@@ -92,19 +94,54 @@ namespace Cuahangbandoanvat.DAL
                 }
                 else
                 {
-                    kq = kq + maKH + "#" + tenKH + "#" + diachiKH + "#" + sdtKH + "\n";
+                    kq = kq + maKH + "#" + tenKH + "#"+ sdtKH+"#" + diachiKH + "\n";
                 }
             }
             sr.Close();
             StreamWriter sw = new StreamWriter(file);
             sw.Write(kq);
             sw.Close();
+
+            string kq1 = "";
+            StreamReader sr1 = new StreamReader(file_hoadon);
+            while ((s = sr1.ReadLine()) != null)
+            {
+                string[] tmp1 = s.Split('#');
+                if (tmp1[1] != maKH)
+                {
+                    kq1 = kq1 + s + "\n";
+                }
+                else
+                {
+                    kq1 = kq1 + hdDAL.Laythongtinhoadon(maKH) + "#" + maKH + "#" + tenKH + "#" + sdtKH + "#" + diachiKH + "\n";
+                }
+            }
+            sr1.Close();
+            StreamWriter sw1 = new StreamWriter(file_hoadon);
+            sw1.Write(kq1);
+            sw1.Close();
         }
-        public void ThemKH(string maKH,string tenKH,string diachiKH,int sdtKH)
+        public void ThemKH(string maKH,string tenKH, double sdtKH,string diachiKH)
         {
             StreamWriter sw = new StreamWriter(file, true);
-            sw.WriteLine(maKH + "#" + tenKH + "#" + diachiKH + "#" + sdtKH);
+            sw.WriteLine(maKH + "#" + tenKH + "#" + sdtKH+"#"+ diachiKH);
             sw.Close();
+        }
+        public string Timkiem(string s)
+        {
+            StreamReader sr = new StreamReader(file);
+            string kq = "";
+            string a;
+            while ((a = sr.ReadLine()) != null)
+            {
+                string[] tmp = a.Split('#');
+                if(tmp[0]==s || tmp[1] == s|| tmp[2]==s||tmp[3]== s)
+                {
+                    kq+=tmp[0]+"\t"+tmp[1]+"\t"+tmp[2]+"\t"+tmp[3]+"\n";
+                }
+            }
+            sr.Close();
+            return kq;
         }
     }
 }

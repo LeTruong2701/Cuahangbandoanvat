@@ -12,6 +12,7 @@ namespace Cuahangbandoanvat.GUI
         private HoaDonBUS hdBUS = new HoaDonBUS();
         private HangHoaGUI hhGUI = new HangHoaGUI();
         private KhachhangBUS khBUS = new KhachhangBUS();
+        
         public void HienMENU()
         {
             Console.Clear();
@@ -20,65 +21,114 @@ namespace Cuahangbandoanvat.GUI
             {
                 Console.WriteLine("QUAN LY BAN HANG");
                 Console.WriteLine("1.Hien thi danh sach hoa don khach hang");
-                Console.WriteLine("2.Hien thi chi tiet hoa don khach hang");
-                Console.WriteLine("3.Them hoa don khach hang");
-                Console.WriteLine("4.Xoa hoa don khach hang");
+                Console.WriteLine("2.Them hoa don khach hang");
+                Console.WriteLine("3.Xoa hoa don khach hang");
+                Console.WriteLine("4.Tim kiem hoa don");
                 Console.WriteLine("5.Quay lai");
                 Console.WriteLine("Ban chon:");
                 char key = char.ToUpper(Console.ReadKey(true).KeyChar);
                 switch (key)
                 {
-                    case '1':HienDanhSachHoaDon(); Console.ReadKey(); break;
-                    case '2': HienChiTietHoaDonKH(); Console.ReadKey(); break;
-                    case '3': ThemHD(); Console.ReadKey(); break;
-                    case '4': XoaHoaDon(); Console.ReadKey(); break;
+                    case '1':HienDanhSachHoaDon(); break;
+                    case '2': ThemHD(); Console.ReadKey(); break;
+                    case '3': XoaHoaDon(); Console.ReadKey(); break;
+                    case '4':Timkiem();Console.ReadKey(); break;
                     case '5': kt=true; break;
                 }
                 Console.Clear();
             }
         }
+        
         public void HienDanhSachHoaDon()
         {
-            Console.WriteLine("DANH SACH HOA DON KHACH HANG");
-            foreach (string s in hdBUS.LayDanhSach())
+            bool kt = false;
+            while (!kt)
+            {
+                Console.Clear();
+                Console.WriteLine("Danh sach hoa don khach hang");
+                foreach (string s in hdBUS.LayDanhSach())
+                {
+                    Console.WriteLine(s);
+                }
+                Console.Write("Nhap ma hoa don de xem chi tiet (Nhan Enter de thoat):");
+                string maHD = Console.ReadLine().ToUpper();
+                if (maHD =="")
+                {
+                    return;
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine(hdBUS.TimkiemKHtheohoadon(maHD));
+                    foreach (string s in hdBUS.LayChiTietHoaDon(maHD))
+                    {
+                        Console.WriteLine(s);
+                    }
+                    Console.Write("Ban co muon xem chi tiet hoa don nua khong ? Có(C) Không(K):");
+                    string a = Console.ReadLine();
+                    if (a == "C" || a == "c")
+                    {
+                        HienDanhSachHoaDon();
+                    }
+                    else
+                    {
+                        kt = true;
+                    }
+                }
+            }
+        }
+        public void Xemchitiethoadon()
+        {
+            Console.Write("Ma hoa don muon xem chi tiet:");
+            string maHD = Console.ReadLine().ToUpper();
+            foreach (string s in hdBUS.LayChiTietHoaDon(maHD))
             {
                 Console.WriteLine(s);
             }
         }
-        public void HienChiTietHoaDonKH()
+        public void Timkiem()
         {
-            foreach(string s in hdBUS.LayDanhSach())
+            Console.WriteLine("Tim kiem hoa don");
+            Console.Write("Nhap thong tin ve hoa don ban muon tim kiem:");
+            string s = Console.ReadLine();
+            if (hdBUS.Timkiemhoadon(s) !="")
             {
-                Console.WriteLine(s);
+                Console.WriteLine(hdBUS.Timkiemhoadon(s));
+                Console.WriteLine("Nhan ENTER de quay tro lai...");
             }
-            Console.Write("Ma hoa don muon xem chi tiet:");
-            string maHD = Console.ReadLine();
-            foreach(string s in hdBUS.LayChiTietHoaDon(maHD))
+            else
             {
-                Console.WriteLine(s); 
+                Console.WriteLine("Khong co thong tin ban muon tim!");
+                Console.WriteLine("Nhan ENTER de quay tro lai...");
             }
         }
         public void ThemHD()
         {
             Console.WriteLine("Nhap thong tin hoa don can them");
-            Console.Write("Nhap ma hoa don:");
-            string maHD = Console.ReadLine();
-            Console.Write("Nhap ma khach hang :");
-            string maKH = Console.ReadLine();
+            string maHD = "";
+            while (maHD == "" || hdBUS.Kiemtra(maHD) == "X")
+            {
+                Random r = new Random();
+                int i = r.Next(0, 100);
+                maHD = "HD" + i;
+            }
+            DateTime ngaygio = DateTime.Now;
+            Console.Write("Nhap ma khach hang(KH**):");
+            string maKH = Console.ReadLine().ToUpper();
             Console.Write("Nhap ten khach hang:");
             string tenKH = Console.ReadLine();
             Console.Write("Dia chi khach hang:");
             string diachiKH = Console.ReadLine();
-            Console.Write("SDT khach hang :");
-            int sdtKH = int.Parse(Console.ReadLine());
-            khBUS.ThemKH(maKH, tenKH,diachiKH,sdtKH);
-            hdBUS.ThemHoaDon(maHD,maKH,tenKH,diachiKH, sdtKH);
+            Console.Write("SDT khach hang (10 số):");
+            double sdtKH = double.Parse(Console.ReadLine());
+            khBUS.ThemKH(maKH, tenKH,sdtKH,diachiKH);
+            hdBUS.ThemHoaDon(maHD,maKH,tenKH, sdtKH,diachiKH, ngaygio);
             Console.WriteLine("Nhap chi tiet cho hoa don");
             while (true)
             {
                 hhGUI.HienHangHoa();
                 Console.Write("Chon ma hang hoa:");
-                string maHH = Console.ReadLine();
+                string maHH = Console.ReadLine().ToUpper();
                 Console.Write("So luong: ");
                 int soluong = int.Parse(Console.ReadLine());
                 hdBUS.ThemChiTietHoaDon(maHD,maKH, maHH, soluong);
@@ -94,10 +144,29 @@ namespace Cuahangbandoanvat.GUI
         public void XoaHoaDon()
         {
             Console.Write("Nhap ma hoa don can xoa: ");
-            string maHD= Console.ReadLine();
+            string maHD= Console.ReadLine().ToUpper();
 
             hdBUS.Xoa(maHD);
             Console.WriteLine("Da xoa hoa don!");
         }
+        //public void SuaHD()
+        //{
+        //    Console.WriteLine("Danh sach hoa don");
+        //    foreach(string s in hdBUS.LayDanhSach())
+        //    {
+        //        Console.WriteLine(s);
+        //    }
+        //    Console.Write("Nhap ma hoa don ban muon sua:");
+        //    string maHD = Console.ReadLine();
+        //    Console.Clear();
+        //    Console.WriteLine("Danh sach cac mat hang trong hoa don");
+        //    foreach(string s in hdBUS.LayChiTietHoaDon(maHD))
+        //    {
+        //        Console.WriteLine(s);
+        //    }
+        //    Console.Write("Nhap ma hang hoa ban muon sua:");
+        //    string maHH = Console.ReadLine();
+
+        //}
     }
 }

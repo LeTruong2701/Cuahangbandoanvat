@@ -26,5 +26,9 @@ namespace Cuahangbandoanvat.BUS
         {
             return lhDAL.Laydanhsach();
         }
+        public string KiemTra(string s)
+        {
+            return lhDAL.KiemTra(s);
+        }
     }
 }

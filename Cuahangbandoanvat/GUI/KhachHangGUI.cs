@@ -22,7 +22,8 @@ namespace Cuahangbandoanvat.GUI
                 Console.WriteLine("1.Hien thi danh sach khach hang");
                 Console.WriteLine("2.Sua thong tin khach hang");
                 Console.WriteLine("3.Xoa thong tin khach hang");
-                Console.WriteLine("4.Quay lai");
+                Console.WriteLine("4.Tim kiem kh");
+                Console.WriteLine("5.Quay lai");
                 Console.Write("Ban chon : ");
                 string s = Console.ReadLine();
                 switch (s)
@@ -30,7 +31,8 @@ namespace Cuahangbandoanvat.GUI
                     case "1":HienDSKhachhang();Console.ReadKey();break;
                     case "2":SuaTTKhachhang();Console.ReadKey();break;
                     case "3":XoaTTKhachhang();Console.ReadKey();break;
-                    case "4": kt = true;break;
+                    case "4":TimkiemKH();Console.ReadKey();break;
+                    case "5": kt = true;break;
                 }
             }
         }
@@ -57,7 +59,7 @@ namespace Cuahangbandoanvat.GUI
             string diachiKH = Console.ReadLine();
             Console.Write("Nhap SDT khach hang moi :");
             int sdtKH = int.Parse(Console.ReadLine());
-            khBUS.Sua(maKH, tenKH, diachiKH, sdtKH);
+            khBUS.Sua(maKH, tenKH,sdtKH, diachiKH);
             Console.WriteLine("Cap nhat thanh cong!!");
 
         }
@@ -72,6 +74,13 @@ namespace Cuahangbandoanvat.GUI
             string maKH = Console.ReadLine();
             khBUS.Xoa(maKH);
             Console.WriteLine("Da xoa khach hang!!!");
+        }
+        public void TimkiemKH()
+        {
+            Console.Write("Nhap thong tin lien quan den khach hang ban muon tim kiem :");
+            string s = Console.ReadLine();
+            Console.WriteLine("Khach hang ban muon tim");
+            Console.WriteLine(khBUS.Timkiem(s));
         }
     }
 }

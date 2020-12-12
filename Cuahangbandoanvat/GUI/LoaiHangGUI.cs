@@ -68,36 +68,107 @@ namespace Cuahangbandoanvat.GUI
         }
         public void HienLoaiHang()
         {
-            Console.WriteLine("Danh sach cac loai hang");
-            foreach (string s in lhBUS.LayDanhSach())
+            Console.Clear();
+            Console.WriteLine("\t\t╔════════════════════════════════════════════╗");
+            Console.WriteLine("\t\t║           DANH SÁCH CÁC LOẠI HÀNG          ║");
+            Console.WriteLine("\t\t╠════════════════╦═══════════════════════════╣");
+            Console.WriteLine("\t\t║  Mã Loại Hàng  ║        Tên Loại Hàng      ║");
+            Console.WriteLine("\t\t╠════════════════╬═══════════════════════════╣");
+            for(int i = 0; i < lhBUS.LayDanhSach().Count;i++)
             {
-                Console.WriteLine(s);
+                string[] tmp = lhBUS.LayDanhSach()[i].Split('\t');
+                Console.WriteLine("\t\t║       {0,-5}    ║         {1,-18}║", tmp[0], tmp[1]);
             }
+            Console.WriteLine("\t\t╚════════════════╩═══════════════════════════╝");
+            Console.Write("\t\tNhấn phím bất kì để kết thúc!");
         }
         public void ThemLoaiHang()
         {
-            Console.WriteLine("Danh sach loai hang da co");
-            foreach(string s in lhBUS.LayDanhSach())
-            {
-                Console.WriteLine(s);
-            }
-            Console.WriteLine("Nhap thong tin loai hang muon them");
-            Console.Write("Ma loai hang:");
+            Console.Clear();
+            Console.WriteLine("\t\t╔════════════════════════════════════════════╗");
+            Console.WriteLine("\t\t║                THÊM LOẠI HÀNG              ║");
+            Console.WriteLine("\t\t╠════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                            ║");
+            Console.WriteLine("\t\t║  Mã Loại Hàng :                            ║");
+            Console.WriteLine("\t\t║                                            ║");
+            Console.WriteLine("\t\t║  Tên Loại Hàng :                           ║");
+            Console.WriteLine("\t\t║                                            ║");
+            Console.WriteLine("\t\t╠════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                            ║");
+            Console.WriteLine("\t\t╚════════════════════════════════════════════╝");
+
+            Console.SetCursorPosition(34, 4);
             string maLH = Console.ReadLine();
-            Console.Write("Ten loai hang:");
+            string a;
+            while (maLH.Length > 5 || maLH == ""||lhBUS.KiemTra(maLH)=="X")
+            {
+                a = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(23, 9);
+                Console.Write(a);
+                //Xoa nhung gi da nhap
+                Console.SetCursorPosition(34, 4);
+                Console.Write(new string(' ', maLH.Length));
+                Console.SetCursorPosition(34, 4);
+                maLH = Console.ReadLine();
+                //Xoa dong chu string a
+                Console.SetCursorPosition(23, 9);
+                Console.Write(new string(' ',a.Length));
+            }
+            Console.SetCursorPosition(35, 6);
             string tenLH = Console.ReadLine();
+            string b;
+            while (tenLH.Length > 20 || tenLH == ""||lhBUS.KiemTra(tenLH)=="X")
+            {
+                b = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(23, 9);
+                Console.Write(b);
+                //Xoa nhung gi da nhap
+                Console.SetCursorPosition(35, 6);
+                Console.Write(new string(' ', maLH.Length));
+                Console.SetCursorPosition(35, 6);
+                tenLH = Console.ReadLine();
+                //Xoa dong chu string b
+                Console.SetCursorPosition(23, 9);
+                Console.Write(new string(' ', b.Length));
+            }
+            if (tenLH.Length <= 20 && tenLH != "")
+            {
+                Console.SetCursorPosition(28, 9);
+                Console.Write("Đã thêm thành công !!!");
+            }
             lhBUS.ThemLH(maLH, tenLH);
-            Console.WriteLine("Da them thanh cong!!!");
         }
         public void SuaLoaiHang()
         {
-            foreach(string s in lhBUS.LayDanhSach())
-            {
-                Console.WriteLine(s);
-            }
-            Console.WriteLine("Nhap thong tin loai hang muon sua");
-            Console.Write("Nhap ma loai hang muon sua :");
+            Console.Clear();
+            Console.WriteLine("\t\t╔══════════════════════════════════════════════════════╗");
+            Console.WriteLine("\t\t║                      SỬA LOẠI HÀNG                   ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t║  Mã Loại Hàng(muốn sửa) :                            ║");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t║  Tên Loại Hàng(mới) :                                ║");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t╚══════════════════════════════════════════════════════╝");
+            Console.SetCursorPosition(44, 4);
             string maLH = Console.ReadLine();
+            string a;
+            while (maLH.Length > 5 || maLH == "")
+            {
+                a = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(26, 9);
+                Console.Write(a);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(44, 4);
+                Console.Write(new string(' ', maLH.Length));
+                Console.SetCursorPosition(44, 4);
+                maLH = Console.ReadLine();
+                //xoa dong string a
+                Console.SetCursorPosition(26, 9);
+                Console.Write(new string(' ',a.Length));
+            }
             Console.Write("Nhap ten loai hang muon sua :");
             string tenLH = Console.ReadLine();
             lhBUS.SuaLH(maLH, tenLH);

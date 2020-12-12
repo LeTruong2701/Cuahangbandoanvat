@@ -31,9 +31,21 @@ namespace Cuahangbandoanvat.BUS
         {
             return hhDAL.Laydanhsach();
         }
-        //public void Timkiem(string maHH)
-        //{
-        //    hhDAL.Timkiem(maHH);
-        //}
+        public string Timkiem(string s)
+        {
+            return hhDAL.Timkiem(s);
+        }
+        public string KiemTra(string s)
+        {
+            return hhDAL.KiemTra(s);
+        }
+        public string Layloaihang(string s)
+        {
+            return hhDAL.Layloaihang(s);
+        }
+        public string Laydsmathangtheoloaihang(string s)
+        {
+            return hhDAL.Laydsmathangtheoloaihang(s);
+        }
     }
 }

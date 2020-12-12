@@ -76,5 +76,26 @@ namespace Cuahangbandoanvat.DAL
 
             return ds;
         }
+        public string KiemTra(string s)//Kiem tra xem maloaihang da ton tai hay chua
+        {
+            StreamReader sr = new StreamReader(file);
+            string kq = "";
+            string a;
+            while ((a = sr.ReadLine()) != null)
+            {
+                string[] tmp = a.Split('#');
+                if (tmp[0] == s||tmp[1]==s)
+                {
+                    kq = "X";
+                    break;
+                }
+                else
+                {
+                    kq = "V";
+                }
+            }
+            sr.Close();
+            return kq;
+        }
     }
 }
