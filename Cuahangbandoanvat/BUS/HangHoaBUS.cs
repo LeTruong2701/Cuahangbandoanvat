@@ -8,16 +8,16 @@ using Cuahangbandoanvat.DAL;
 
 namespace Cuahangbandoanvat.BUS
 {
-    class HangHoaBus
+    class HangHoaBUS
     {
         private HangHoaDAL hhDAL = new HangHoaDAL();
 
-        public void Them(string maHH, string tenHH,string loaiHH, double giaban)
+        public void Them(string maHH, string tenHH,string loaiHH, string giaban)
         {
             hhDAL.Them(maHH, tenHH,loaiHH,giaban);
         }
 
-        public void Sua(string maHH, string tenHH,string loaiHH,double giaban)
+        public void Sua(string maHH, string tenHH,string loaiHH,string giaban)
         {
             hhDAL.Sua(maHH, tenHH,loaiHH,giaban);
         }
@@ -31,9 +31,9 @@ namespace Cuahangbandoanvat.BUS
         {
             return hhDAL.Laydanhsach();
         }
-        public string Timkiem(string s)
+        public void Timkiem(string s)
         {
-            return hhDAL.Timkiem(s);
+            hhDAL.Timkiem(s);
         }
         public string KiemTra(string s)
         {
@@ -43,9 +43,29 @@ namespace Cuahangbandoanvat.BUS
         {
             return hhDAL.Layloaihang(s);
         }
-        public string Laydsmathangtheoloaihang(string s)
+        public void Laydsmathangtheoloaihang(string s)
         {
-            return hhDAL.Laydsmathangtheoloaihang(s);
+            hhDAL.laydshanghoatheoloaihang(s);
+        }
+        public string KiemtramaLH(string s)
+        {
+            return hhDAL.KiemTramaLH(s);
+        }
+        public string KiemtratenHH(string s)
+        {
+            return hhDAL.KiemTratenHH(s);
+        }
+        public bool checkgiaban(string s)
+        {
+            return hhDAL.checkNum(s);
+        }
+        public void laythongtinhanghoagui(string s)
+        {
+            hhDAL.laythongtinhanghoagui(s);
+        }
+        public string KiemtrathongtinHH(string s)
+        {
+            return hhDAL.KiemtrathongtinHH(s);
         }
     }
 }

@@ -7,10 +7,12 @@ using Cuahangbandoanvat.BUS;
 
 namespace Cuahangbandoanvat.GUI
 {
+    
     class HoaDonGUI
     {
+
         private HoaDonBUS hdBUS = new HoaDonBUS();
-        private HangHoaGUI hhGUI = new HangHoaGUI();
+        private HangHoaBUS hhBUS = new HangHoaBUS(); 
         private KhachhangBUS khBUS = new KhachhangBUS();
         
         public void HienMENU()
@@ -19,25 +21,58 @@ namespace Cuahangbandoanvat.GUI
             bool kt = false;
             while (!kt)
             {
-                Console.WriteLine("QUAN LY BAN HANG");
-                Console.WriteLine("1.Hien thi danh sach hoa don khach hang");
-                Console.WriteLine("2.Them hoa don khach hang");
-                Console.WriteLine("3.Xoa hoa don khach hang");
-                Console.WriteLine("4.Tim kiem hoa don");
-                Console.WriteLine("5.Quay lai");
-                Console.WriteLine("Ban chon:");
+                Console.Clear();
+
+
+                Console.Write("\n\t\t╔═══════════════════════════════════════════════════════════════════════╗");
+                Console.Write("\n\t\t║                CHƯƠNG TRÌNH QUẢN LÝ CỦA CỬA HÀNG ĐỒ ĂN VẶT            ║");
+                Console.Write("\n\t\t╠═══════════════════════════════════════════════════════════════════════╣");
+                Console.Write("\n\t\t║                                                                       ║");
+                Console.Write("\n\t\t║ ╔═══════════════════════════════════════════════════════════════════╗ ║");
+                Console.Write("\n\t\t║ ║                                                                   ║ ║");
+                Console.Write("\n\t\t║ ║                        QUẢN LÝ BÁN HÀNG                           ║ ║");
+                Console.Write("\n\t\t║ ║                                                                   ║ ║");
+                Console.Write("\n\t\t║ ║               ╔═══╦══════════════════════════════╗                ║ ║");
+                Console.Write("\n\t\t║ ║               ║___║______________________________║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║   ║                              ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║ 1.║     HIỂN THỊ DS HÓA ĐƠN      ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║___║______________________________║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║   ║                              ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║ 2.║     THÊM HÓA ĐƠN             ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║___║______________________________║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║   ║                              ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║ 3.║     XÓA HÓA ĐƠN              ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║___║______________________________║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║   ║                              ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║ 4.║     TÌM KIẾM HÓA ĐƠN         ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║___║______________________________║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║   ║                              ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║ 5.║     QUAY LẠI MENU CHÍNH      ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║___║______________________________║                ║ ║");
+                Console.Write("\n\t\t║ ║               ║   ║ Bấm phím theo số để chọn:    ║                ║ ║");
+                Console.Write("\n\t\t║ ║               ╚═══╩══════════════════════════════╝                ║ ║");
+                Console.Write("\n\t\t║ ║                                                                   ║ ║");
+                Console.Write("\n\t\t║ ║                                                                   ║ ║");
+                Console.Write("\n\t\t║ ║                                                                   ║ ║");
+                Console.Write("\n\t\t║ ║                                                                   ║ ║");
+                Console.Write("\n\t\t║ ╚═══════════════════════════════════════════════════════════════════╝ ║");
+                Console.Write("\n\t\t║                                                                       ║");
+                Console.Write("\n\t\t╚═══════════════════════════════════════════════════════════════════════╝");
+                Console.SetCursorPosition(65, 26);
                 char key = char.ToUpper(Console.ReadKey(true).KeyChar);
                 switch (key)
                 {
-                    case '1':HienDanhSachHoaDon(); break;
+                    case '1': HienDanhSachHoaDon(); Console.ReadKey(); break;
                     case '2': ThemHD(); Console.ReadKey(); break;
+                    
                     case '3': XoaHoaDon(); Console.ReadKey(); break;
-                    case '4':Timkiem();Console.ReadKey(); break;
-                    case '5': kt=true; break;
+                    case '4': Timkiem(); Console.ReadKey(); break;
+                    case '5': kt = true; break;
                 }
-                Console.Clear();
+
+
+                }
             }
-        }
         
         public void HienDanhSachHoaDon()
         {
@@ -45,12 +80,19 @@ namespace Cuahangbandoanvat.GUI
             while (!kt)
             {
                 Console.Clear();
-                Console.WriteLine("Danh sach hoa don khach hang");
-                foreach (string s in hdBUS.LayDanhSach())
+                Console.WriteLine("\t\t╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+                Console.WriteLine("\t\t║                                              DANH SÁCH HÓA ĐƠN                                                               ║");
+                Console.WriteLine("\t\t╠═══════════╦═══════════╦═════════════════════════════╦═══════════════════════╦═════════════════════════════╦══════════════════╣");
+                Console.WriteLine("\t\t║   Mã HD   ║   Mã KH   ║        Tên Khách Hàng       ║    SĐT Khách Hàng     ║      Địa Chỉ Khách Hàng     ║    Ngày Lập HD   ║");
+                Console.WriteLine("\t\t╠═══════════╬═══════════╬═════════════════════════════╬═══════════════════════╬═════════════════════════════╬══════════════════╣");
+                for(int i = 0; i < hdBUS.LayDanhSach().Count; i++)
                 {
-                    Console.WriteLine(s);
+                    string[] tmp = hdBUS.LayDanhSach()[i].Split('\t');
+                    Console.WriteLine("\t\t║  {0,-5}    ║  {1,-5}    ║    {2,-18}       ║    {3,-10}         ║    {4,-25}║    {5,-12}  ║", tmp[0], tmp[1], tmp[2], tmp[3], tmp[4],tmp[5]);
                 }
-                Console.Write("Nhap ma hoa don de xem chi tiet (Nhan Enter de thoat):");
+                Console.WriteLine("\t\t╚═══════════╩═══════════╩═════════════════════════════╩═══════════════════════╩═════════════════════════════╩══════════════════╝");
+                
+                Console.Write("\t\tNhập mã hóa đơn để xem chi tiết (nhấn ENTER để thoát): ");
                 string maHD = Console.ReadLine().ToUpper();
                 if (maHD =="")
                 {
@@ -59,114 +101,272 @@ namespace Cuahangbandoanvat.GUI
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine(hdBUS.TimkiemKHtheohoadon(maHD));
-                    foreach (string s in hdBUS.LayChiTietHoaDon(maHD))
-                    {
-                        Console.WriteLine(s);
-                    }
-                    Console.Write("Ban co muon xem chi tiet hoa don nua khong ? Có(C) Không(K):");
+                    Console.WriteLine("\t\t╔═══════════════════════════════════════════════════════════════════════════════════════╗");
+                    Console.WriteLine("\t\t║                                     HÓA ĐƠN                                           ║");
+                    Console.WriteLine("\t\t║                                                                                       ║");
+                    hdBUS.TimkiemKHtheohoadon(maHD);
+                    Console.WriteLine("\t\t╠═══════════════════════════════════════════════════════════════════════════════════════╣");
+                    Console.WriteLine("\t\t║                                CHI TIẾT HÓA ĐƠN                                       ║");
+                    Console.WriteLine("\t\t║                                                                                       ║");
+                    hdBUS.LayChiTietHoaDon(maHD);
+                    Console.WriteLine("\t\t║                                                                                       ║");
+                    Console.WriteLine("\t\t╠═══════════════════════════════════════════════════════════════════════════════════════╣");
+                    Console.WriteLine("\t\t║                                                          Tổng tiền : {0,-8}         ║",hdBUS.Tongtien(maHD));
+                    Console.WriteLine("\t\t╚═══════════════════════════════════════════════════════════════════════════════════════╝");
+                    Console.Write("\n\t\t Nhập 0 để tiếp tục xem chi tiết hóa đơn (ENTER để thoát):");
                     string a = Console.ReadLine();
-                    if (a == "C" || a == "c")
+                    if (a == "0")
                     {
                         HienDanhSachHoaDon();
                     }
-                    else
+                    else if (a == "")
                     {
                         kt = true;
                     }
+
+                   
                 }
             }
         }
-        public void Xemchitiethoadon()
-        {
-            Console.Write("Ma hoa don muon xem chi tiet:");
-            string maHD = Console.ReadLine().ToUpper();
-            foreach (string s in hdBUS.LayChiTietHoaDon(maHD))
-            {
-                Console.WriteLine(s);
-            }
-        }
+        
         public void Timkiem()
         {
-            Console.WriteLine("Tim kiem hoa don");
-            Console.Write("Nhap thong tin ve hoa don ban muon tim kiem:");
+            Console.Clear();
+            Console.WriteLine("\t\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("\t\t║                                           TÌM KIẾM HÓA ĐƠN                                                     ║");
+            Console.WriteLine("\t\t╠════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║    Nhập thông tin hóa đơn muốn tìm kiếm:                                                                       ║ ");
+            Console.WriteLine("\t\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+            Console.SetCursorPosition(63, 3);
             string s = Console.ReadLine();
-            if (hdBUS.Timkiemhoadon(s) !="")
+            if (hdBUS.KiemtrathongtinHD(s) == "X")
             {
-                Console.WriteLine(hdBUS.Timkiemhoadon(s));
-                Console.WriteLine("Nhan ENTER de quay tro lai...");
+                Console.WriteLine("\n");
+                Console.WriteLine("\t\tThông tin hóa đơn cần tìm");
+                Console.WriteLine("\t\t╔═══════════╦═══════════╦═════════════════════════════╦═══════════════════════╦═════════════════════════════╦══════════════════╗");
+                Console.WriteLine("\t\t║   Mã HD   ║   Mã KH   ║        Tên Khách Hàng       ║    SĐT Khách Hàng     ║      Địa Chỉ Khách Hàng     ║    Ngày Lập HD   ║");
+                Console.WriteLine("\t\t╠═══════════╬═══════════╬═════════════════════════════╬═══════════════════════╬═════════════════════════════╬══════════════════╣");
+                hdBUS.Timkiemhoadon(s);
+                Console.WriteLine("\t\t╚═══════════╩═══════════╩═════════════════════════════╩═══════════════════════╩═════════════════════════════╩══════════════════╝");
+                Console.WriteLine("\t\t Nhấn ENTER để thoát");
             }
-            else
+            else if (hdBUS.KiemtrathongtinHD(s) == "Y")
             {
-                Console.WriteLine("Khong co thong tin ban muon tim!");
-                Console.WriteLine("Nhan ENTER de quay tro lai...");
+                Console.WriteLine("\n");
+                Console.Write("\t\t Không tìm thấy thông tin hóa đơn!!! Nhấn '0' để tìm lại ( ENTER để thoát) :");
+                string a = Console.ReadLine();
+                if (a == "")
+                {
+                    HienMENU();
+                }
+                else if (a == "0")
+                {
+                    Timkiem();
+                }
             }
+
+     
         }
         public void ThemHD()
         {
-            Console.WriteLine("Nhap thong tin hoa don can them");
+            Console.Clear();
+            Console.WriteLine("\t\t╔══════════════════════════════════════════════════════════════════════════╗");
+            Console.WriteLine("\t\t║                           HÓA ĐƠN MUA HÀNG                               ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                                          ║");
+            Console.WriteLine("\t\t║    Mã Khách Hàng :                                                       ║");
+            Console.WriteLine("\t\t║                                                                          ║");
+            Console.WriteLine("\t\t║    Tên Khách Hàng :                                                      ║");
+            Console.WriteLine("\t\t║                                                                          ║");
+            Console.WriteLine("\t\t║    Địa Chỉ Khách Hàng :                                                  ║");
+            Console.WriteLine("\t\t║                                                                          ║");
+            Console.WriteLine("\t\t║    SĐT Khách Hàng :                                                      ║");
+            Console.WriteLine("\t\t║                                                                          ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                                          ║");
+            Console.WriteLine("\t\t╚══════════════════════════════════════════════════════════════════════════╝");
+
             string maHD = "";
-            while (maHD == "" || hdBUS.Kiemtra(maHD) == "X")
+            while (maHD == "" || hdBUS.KiemtramaHD(maHD) == "X")
             {
                 Random r = new Random();
                 int i = r.Next(0, 100);
                 maHD = "HD" + i;
             }
             DateTime ngaygio = DateTime.Now;
-            Console.Write("Nhap ma khach hang(KH**):");
-            string maKH = Console.ReadLine().ToUpper();
-            Console.Write("Nhap ten khach hang:");
+
+            Console.SetCursorPosition(37, 4);
+            string maKH = Console.ReadLine();
+            string a;
+            while (maKH.Length >6 || maKH == ""||hdBUS.kiemtramaKH(maKH)=="X" )
+            {
+                a = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(36, 13);
+                Console.Write(a);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(37, 4);
+                Console.Write(new string(' ', maKH.Length));
+                Console.SetCursorPosition(37, 4);
+                maKH = Console.ReadLine();
+                //xoa dong string a
+                Console.SetCursorPosition(36, 13);
+                Console.Write(new string(' ', a.Length));
+            }
+
+            Console.SetCursorPosition(38, 6);
             string tenKH = Console.ReadLine();
-            Console.Write("Dia chi khach hang:");
+            string b;
+            while (tenKH.Length > 20 || tenKH == "")
+            {
+                b = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(36, 13);
+                Console.Write(b);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(38, 6);
+                Console.Write(new string(' ', tenKH.Length));
+                Console.SetCursorPosition(38,6);
+                tenKH = Console.ReadLine();
+                //xoa dong string a
+                Console.SetCursorPosition(36, 13);
+                Console.Write(new string(' ', b.Length));
+            }
+
+            Console.SetCursorPosition(42, 8);
             string diachiKH = Console.ReadLine();
-            Console.Write("SDT khach hang (10 số):");
-            double sdtKH = double.Parse(Console.ReadLine());
-            khBUS.ThemKH(maKH, tenKH,sdtKH,diachiKH);
-            hdBUS.ThemHoaDon(maHD,maKH,tenKH, sdtKH,diachiKH, ngaygio);
-            Console.WriteLine("Nhap chi tiet cho hoa don");
+            string c;
+            while (diachiKH.Length > 30 || diachiKH == "")
+            {
+                c = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(36, 13);
+                Console.Write(c);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(42, 8);
+                Console.Write(new string(' ', diachiKH.Length));
+                Console.SetCursorPosition(42, 8);
+                diachiKH = Console.ReadLine();
+                //xoa dong string a
+                Console.SetCursorPosition(36, 13);
+                Console.Write(new string(' ', c.Length));
+            }
+
+
+            Console.SetCursorPosition(38, 10);
+            string sdtKH = Console.ReadLine();
+            string d;
+            while (sdtKH.Length != 10 || sdtKH == "" || hdBUS.kiemtrachuoi(sdtKH) == false)
+            {
+                d = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(36, 13);
+                Console.Write(d);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(38, 10);
+                Console.Write(new string(' ', sdtKH.Length));
+                Console.SetCursorPosition(38, 10);
+                sdtKH = Console.ReadLine();
+                //xoa dong string a
+                Console.SetCursorPosition(36, 13);
+                Console.Write(new string(' ', d.Length));
+            }
+            khBUS.ThemKH(maKH, tenKH, sdtKH, diachiKH);
+            hdBUS.ThemHoaDon(maHD, maKH, tenKH, sdtKH, diachiKH, ngaygio);
+
+            
+            Console.Clear();
             while (true)
             {
-                hhGUI.HienHangHoa();
-                Console.Write("Chon ma hang hoa:");
-                string maHH = Console.ReadLine().ToUpper();
-                Console.Write("So luong: ");
-                int soluong = int.Parse(Console.ReadLine());
-                hdBUS.ThemChiTietHoaDon(maHD,maKH, maHH, soluong);
-                Console.Write("Ban co muon nhap tiep khong?");
-                string s = Console.ReadLine();
-                if (s.ToLower() != "c")
+                Console.Clear();
+                Console.WriteLine("\t\t╔═══════════════════════════════════════════════════════════════════════════════════════════════════╗");
+                Console.WriteLine("\t\t║                                          DANH SÁCH HÀNG HÓA                                       ║");
+                Console.WriteLine("\t\t╠═════════════╦════════════════════════════════╦══════════════════════════╦═════════════════════════╣");
+                Console.WriteLine("\t\t║    Mã HH    ║         Tên Hàng Hóa           ║      Loại Hàng Hóa       ║      Gía Thành          ║ ");
+                Console.WriteLine("\t\t╠═════════════╬════════════════════════════════╬══════════════════════════╬═════════════════════════╣");
+                for (int i = 0; i < hhBUS.LayDanhSach().Count; i++)
                 {
+                    string[] tmp = hhBUS.LayDanhSach()[i].Split('\t');
+                    Console.WriteLine("\t\t║    {0,-5}    ║      {1,-18}        ║      {2,-10}          ║        {3,-10}       ║", tmp[0], tmp[1], tmp[2], tmp[3]);
+                }
+                Console.WriteLine("\t\t╚═════════════╩════════════════════════════════╩══════════════════════════╩═════════════════════════╝");
+                Console.WriteLine("\n");
+                Console.Write("\t\tNhập mã hàng hóa : ");
+                string maHH = Console.ReadLine().ToUpper();
+                Console.WriteLine();
+                Console.Write("\t\tSố lượng : ");
+                int soluong = int.Parse(Console.ReadLine());
+                hdBUS.ThemChiTietHoaDon(maHD, maKH, maHH, soluong);
+                Console.Write("\n\t\t Nhấn 0 để tiếp tục thêm hàng hóa(ENTER để kết thúc): ");
+                string s = Console.ReadLine();
+                if (s != "0")
+                {
+                    Console.WriteLine("\n\t\t ĐÃ THÊM HÓA ĐƠN!!!");
                     break;
                 }
             }
-            Console.WriteLine("Da them hoa don");
+            Console.Clear();
+            Console.Write("\n\t\t Nhập 1 để tiếp tục thêm hóa đơn(ENTER để trở vê màn hình chính) : ");
+            string x = Console.ReadLine();
+            if (x == "1")
+            {
+                ThemHD();
+            }
+            else if (x == "")
+            {
+                HienMENU();
+            }
+            
+            
         }
         public void XoaHoaDon()
         {
-            Console.Write("Nhap ma hoa don can xoa: ");
-            string maHD= Console.ReadLine().ToUpper();
+            Console.Clear();
+            Console.WriteLine("\t\t╔══════════════════════════════════════════════════════╗");
+            Console.WriteLine("\t\t║                     XÓA HÓA ĐƠN                      ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t║  Mã Hóa Đơn(muốn xóa) :                              ║");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t╚══════════════════════════════════════════════════════╝");
 
-            hdBUS.Xoa(maHD);
-            Console.WriteLine("Da xoa hoa don!");
+            Console.SetCursorPosition(44, 4);
+            string maHD = Console.ReadLine();
+            string a;
+            while (maHD.Length > 5 || maHD == "" || hdBUS.KiemtramaHD(maHD) == "Y")
+            {
+                a = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(26, 7);
+                Console.Write(a);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(44, 4);
+                Console.Write(new string(' ', maHD.Length));
+                Console.SetCursorPosition(44, 4);
+                maHD = Console.ReadLine();
+                //xoa dong string a
+                Console.SetCursorPosition(26, 7);
+                Console.Write(new string(' ', a.Length));
+            }
+            Console.WriteLine();
+            Console.WriteLine("\n\n");
+            Console.WriteLine("\t\t Thông tin hóa đơn");
+            Console.WriteLine("\t\t╔═══════════╦═══════════╦═════════════════════════════╦═══════════════════════╦═════════════════════════════╦══════════════════╗");
+            Console.WriteLine("\t\t║   Mã HD   ║   Mã KH   ║        Tên Khách Hàng       ║    SĐT Khách Hàng     ║      Địa Chỉ Khách Hàng     ║    Ngày Lập HD   ║");
+            Console.WriteLine("\t\t╠═══════════╬═══════════╬═════════════════════════════╬═══════════════════════╬═════════════════════════════╬══════════════════╣");
+            hdBUS.LaythongtinHD(maHD);
+            Console.WriteLine("\t\t╚═══════════╩═══════════╩═════════════════════════════╩═══════════════════════╩═════════════════════════════╩══════════════════╝");
+            Console.WriteLine();
+            Console.Write("\t\tNhấn ENTER để xóa , 0 để thoát:");
+            string kt = Console.ReadLine();
+            if (kt == "")
+            {
+                hdBUS.Xoa(maHD);
+                Console.Write("\t\t ĐÃ XÓA HÓA ĐƠN!!!");
+            }
+            else if (kt == "0")
+            {
+                HienMENU();
+            }
+
+            
         }
-        //public void SuaHD()
-        //{
-        //    Console.WriteLine("Danh sach hoa don");
-        //    foreach(string s in hdBUS.LayDanhSach())
-        //    {
-        //        Console.WriteLine(s);
-        //    }
-        //    Console.Write("Nhap ma hoa don ban muon sua:");
-        //    string maHD = Console.ReadLine();
-        //    Console.Clear();
-        //    Console.WriteLine("Danh sach cac mat hang trong hoa don");
-        //    foreach(string s in hdBUS.LayChiTietHoaDon(maHD))
-        //    {
-        //        Console.WriteLine(s);
-        //    }
-        //    Console.Write("Nhap ma hang hoa ban muon sua:");
-        //    string maHH = Console.ReadLine();
-
-        //}
     }
 }

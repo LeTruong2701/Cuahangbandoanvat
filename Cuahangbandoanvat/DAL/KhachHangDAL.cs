@@ -80,7 +80,7 @@ namespace Cuahangbandoanvat.DAL
             sw3.Close();
 
         }
-        public void Sua(string maKH,string tenKH,double sdtKH, string diachiKH)
+        public void Sua(string maKH,string tenKH,string sdtKH, string diachiKH)
         {
             string kq = "";
             string s;
@@ -121,13 +121,32 @@ namespace Cuahangbandoanvat.DAL
             sw1.Write(kq1);
             sw1.Close();
         }
-        public void ThemKH(string maKH,string tenKH, double sdtKH,string diachiKH)
+        public void ThemKH(string maKH,string tenKH, string sdtKH,string diachiKH)
         {
             StreamWriter sw = new StreamWriter(file, true);
             sw.WriteLine(maKH + "#" + tenKH + "#" + sdtKH+"#"+ diachiKH);
             sw.Close();
         }
-        public string Timkiem(string s)
+        public void Timkiem(string s)
+        {
+            StreamReader sr = new StreamReader(file);
+            
+            string a;
+            while ((a = sr.ReadLine()) != null)
+            {
+                string[] tmp = a.Split('#');
+                if(tmp[0]==s || tmp[1] == s|| tmp[2]==s||tmp[3]== s)
+                {
+                    Console.WriteLine("\t\t║    {0,-5}    ║      {1,-18}        ║      {2,-10}          ║     {3,-30}   ║\n", tmp[0], tmp[1], tmp[2], tmp[3]);
+                    //kq+=tmp[0]+"\t"+tmp[1]+"\t"+tmp[2]+"\t"+tmp[3]+"\n";
+                }
+            }
+            sr.Close();
+            
+        }
+        
+        //KIEM TRA XEM MAKH đã tồn tại hay chưa
+        public string Kiemtra(string s)
         {
             StreamReader sr = new StreamReader(file);
             string kq = "";
@@ -135,13 +154,69 @@ namespace Cuahangbandoanvat.DAL
             while ((a = sr.ReadLine()) != null)
             {
                 string[] tmp = a.Split('#');
-                if(tmp[0]==s || tmp[1] == s|| tmp[2]==s||tmp[3]== s)
+                if (tmp[0] == s)
                 {
-                    kq+=tmp[0]+"\t"+tmp[1]+"\t"+tmp[2]+"\t"+tmp[3]+"\n";
+                    kq = "X";
+                    break;
+                }
+                else
+                {
+                    kq = "Y";
                 }
             }
             sr.Close();
             return kq;
+        }
+        //lấy thông tin khách hàng
+        public void Laythongtinkhachhang(string s)
+        {
+            StreamReader sr = new StreamReader(file);
+            
+            string a;
+            while ((a = sr.ReadLine()) != null)
+            {
+                string[] tmp = a.Split('#');
+                if (tmp[0] == s)
+                {
+                    Console.WriteLine("\t\t║    {0,-5}    ║      {1,-18}        ║      {2,-10}          ║     {3,-30}   ║", tmp[0], tmp[1], tmp[2], tmp[3]);
+                    //kq ="\t\t" + "║    " + tmp[0] + "     ║       " + tmp[1] + "       ║     " + tmp[2] + "    ║    " + tmp[3] ;
+                }
+            }
+            sr.Close();
+            
+        }
+        //kiểm tra xem có thông tin khách hàng trong file không
+        public string KiemtrathongtinKH(string s)
+        {
+            StreamReader sr = new StreamReader(file);
+            string kq = "";
+            string a;
+            while ((a = sr.ReadLine()) != null)
+            {
+                string[] tmp = a.Split('#');
+                if (tmp[0] == s||tmp[1]==s||tmp[2]==s||tmp[3]==s)
+                {
+                    kq = "X";
+                    break;
+                }
+                else
+                {
+                    kq = "Y";
+                }
+            }
+            sr.Close();
+            return kq;
+        }
+        //kiểm tra xem chuỗi có phải là số không
+        //kiem tra số điện thoại có chứa chữ không
+        public bool checkNum(string s)
+        {
+            foreach (char x in s)
+            {
+                if (!char.IsNumber(x))
+                    return false;
+            }
+            return true;
         }
     }
 }

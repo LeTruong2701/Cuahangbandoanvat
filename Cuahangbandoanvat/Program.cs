@@ -17,8 +17,7 @@ namespace Cuahangbandoanvat
             while (!end)
             {
                 Console.Clear();
-                Console.Title = "\t          CHƯƠNG TRÌNH QUẢN LÝ SÁCH CỦA CỬA HÀNG ĐỒ ĂN VẶT ";
-                Console.SetWindowSize(103, 40);
+                Console.Title = "\t          CHƯƠNG TRÌNH QUẢN LÝ CỬA HÀNG ĐỒ ĂN VẶT ";
                 Console.Write("\n\t\t╔═══════════════════════════════════════════════════════════════════════╗");
                 Console.Write("\n\t\t║                CHƯƠNG TRÌNH QUẢN LÝ CỦA CỬA HÀNG ĐỒ ĂN VẶT            ║");
                 Console.Write("\n\t\t╠═══════════════════════════════════════════════════════════════════════╣");
@@ -42,7 +41,10 @@ namespace Cuahangbandoanvat
                 Console.Write("\n\t\t║ ║              ║ 4.║     QUẢN LÝ KHÁCH HÀNG       ║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ║___║______________________________║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ║   ║                              ║                 ║ ║");
-                Console.Write("\n\t\t║ ║              ║ 5.║     THOÁT KHỎI CHƯƠNG TRÌNH  ║                 ║ ║");
+                Console.Write("\n\t\t║ ║              ║ 5.║     THỐNG KÊ                 ║                 ║ ║");
+                Console.Write("\n\t\t║ ║              ║___║______________________________║                 ║ ║");
+                Console.Write("\n\t\t║ ║              ║   ║                              ║                 ║ ║");
+                Console.Write("\n\t\t║ ║              ║ 6.║     THOÁT KHỎI CHƯƠNG TRÌNH  ║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ║___║______________________________║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ║   ║ Bấm phím theo số để chọn:    ║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ╚═══╩══════════════════════════════╝                 ║ ║");
@@ -53,7 +55,7 @@ namespace Cuahangbandoanvat
                 Console.Write("\n\t\t║ ╚═══════════════════════════════════════════════════════════════════╝ ║");
                 Console.Write("\n\t\t║                                                                       ║");
                 Console.Write("\n\t\t╚═══════════════════════════════════════════════════════════════════════╝");
-                Console.SetCursorPosition(65, 26);
+                Console.SetCursorPosition(65, 29);
                 Char key = Char.ToUpper(Console.ReadKey(true).KeyChar);
                 switch (key)
                 {
@@ -67,7 +69,9 @@ namespace Cuahangbandoanvat
                         hangHoa.HienMENU(); break;
                     case '4':KhachHangGUI khachHang = new KhachHangGUI();
                         khachHang.HienMenu();break;
-                    case '5':end = true;break;
+                    case '5':ThongKeGUI thongKe = new ThongKeGUI();
+                        thongKe.HienMENU();break;
+                    case '6':end = true;break;
                 }
             }
 

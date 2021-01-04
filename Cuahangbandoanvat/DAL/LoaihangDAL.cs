@@ -84,14 +84,14 @@ namespace Cuahangbandoanvat.DAL
             while ((a = sr.ReadLine()) != null)
             {
                 string[] tmp = a.Split('#');
-                if (tmp[0] == s||tmp[1]==s)
+                if (tmp[0] == s)
                 {
                     kq = "X";
                     break;
                 }
                 else
                 {
-                    kq = "V";
+                    kq = "Y";
                 }
             }
             sr.Close();

@@ -18,8 +18,7 @@ namespace Cuahangbandoanvat.GUI
             while (!kt)
             {
                 Console.Clear();
-                Console.Title = "\t          CHƯƠNG TRÌNH QUẢN LÝ SÁCH CỦA CỬA HÀNG ĐỒ ĂN VẶT ";
-                Console.SetWindowSize(103, 40);
+                
                 Console.Write("\n\t\t╔═══════════════════════════════════════════════════════════════════════╗");
                 Console.Write("\n\t\t║                CHƯƠNG TRÌNH QUẢN LÝ CỦA CỬA HÀNG ĐỒ ĂN VẶT            ║");
                 Console.Write("\n\t\t╠═══════════════════════════════════════════════════════════════════════╣");
@@ -137,9 +136,12 @@ namespace Cuahangbandoanvat.GUI
                 Console.Write("Đã thêm thành công !!!");
             }
             lhBUS.ThemLH(maLH, tenLH);
+            Console.WriteLine("\n");
+            Console.Write("\t\tNhấn phím bất kì để kết thúc!");
         }
         public void SuaLoaiHang()
         {
+            
             Console.Clear();
             Console.WriteLine("\t\t╔══════════════════════════════════════════════════════╗");
             Console.WriteLine("\t\t║                      SỬA LOẠI HÀNG                   ║");
@@ -152,10 +154,11 @@ namespace Cuahangbandoanvat.GUI
             Console.WriteLine("\t\t╠══════════════════════════════════════════════════════╣");
             Console.WriteLine("\t\t║                                                      ║");
             Console.WriteLine("\t\t╚══════════════════════════════════════════════════════╝");
+            
             Console.SetCursorPosition(44, 4);
             string maLH = Console.ReadLine();
             string a;
-            while (maLH.Length > 5 || maLH == "")
+            while (maLH.Length > 5 || maLH == ""||lhBUS.KiemTra(maLH)=="Y")
             {
                 a = "Không hợp lệ ! Mời bạn nhập lại";
                 Console.SetCursorPosition(26, 9);
@@ -169,18 +172,70 @@ namespace Cuahangbandoanvat.GUI
                 Console.SetCursorPosition(26, 9);
                 Console.Write(new string(' ',a.Length));
             }
-            Console.Write("Nhap ten loai hang muon sua :");
+            Console.SetCursorPosition(44, 6);
             string tenLH = Console.ReadLine();
+            string b;
+            while (tenLH.Length > 50 || tenLH == "" || lhBUS.KiemTra(tenLH) == "X")
+            {
+                b = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(26, 9);
+                Console.Write(b);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(44, 6);
+                Console.Write(new string(' ', tenLH.Length));
+                Console.SetCursorPosition(44, 6);
+                maLH = Console.ReadLine();
+                //xoa dong string b
+                Console.SetCursorPosition(26, 9);
+                Console.Write(new string(' ', b.Length));
+            }
+            if (tenLH.Length <= 50 && tenLH != "")
+            {
+                Console.SetCursorPosition(30, 9);
+                Console.Write("Đã sửa thành công !!!");
+            }
             lhBUS.SuaLH(maLH, tenLH);
-            Console.WriteLine("Cap nhat thanh cong !!!");
+            Console.WriteLine("\n");
+            Console.Write("\t\tNhấn phím bất kì để kết thúc!");
         }
         public void XoaLoaiHang()
         {
-            Console.WriteLine("Nhap thong tin loai hang muon xoa");
-            Console.Write("Ma loai hang :");
+            Console.Clear();
+            Console.WriteLine("\t\t╔══════════════════════════════════════════════════════╗");
+            Console.WriteLine("\t\t║                      XÓA LOẠI HÀNG                   ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t║  Mã Loại Hàng(muốn xóa) :                            ║");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t╠══════════════════════════════════════════════════════╣");
+            Console.WriteLine("\t\t║                                                      ║");
+            Console.WriteLine("\t\t╚══════════════════════════════════════════════════════╝");
+
+            Console.SetCursorPosition(44, 4);
             string maLH = Console.ReadLine();
-            lhBUS.XoaLH(maLH);//
-            Console.WriteLine("Da xoa loai hang!!!");
+            string a;
+            while (maLH.Length > 5 || maLH == "" || lhBUS.KiemTra(maLH) == "Y")
+            {
+                a = "Không hợp lệ ! Mời bạn nhập lại";
+                Console.SetCursorPosition(26, 7);
+                Console.Write(a);
+                //Xoa nhung gi vua nhap
+                Console.SetCursorPosition(44, 4);
+                Console.Write(new string(' ', maLH.Length));
+                Console.SetCursorPosition(44, 4);
+                maLH = Console.ReadLine();
+                //xoa dong string a
+                Console.SetCursorPosition(26, 7);
+                Console.Write(new string(' ', a.Length));
+            }
+            if (maLH.Length <= 5 && maLH != "")
+            {
+                Console.SetCursorPosition(30, 7);
+                Console.Write("Đã xóa thành công !!!");
+            }
+            lhBUS.XoaLH(maLH);
+            Console.WriteLine("\n");
+            Console.Write("\t\tNhấn phím bất kì để kết thúc!");
         }
     }
 }

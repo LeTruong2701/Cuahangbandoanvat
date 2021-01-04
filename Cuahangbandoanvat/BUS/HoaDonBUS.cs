@@ -10,7 +10,7 @@ namespace Cuahangbandoanvat.BUS
     class HoaDonBUS
     {
         HoaDonDAL hdDAL = new HoaDonDAL();
-        public void ThemHoaDon(string maHD,string maKH, string tenKH,double sdtKH, string diachiKH,DateTime ngaygio)
+        public void ThemHoaDon(string maHD,string maKH, string tenKH,string sdtKH, string diachiKH,DateTime ngaygio)
         {
             hdDAL.ThemHD(maHD,maKH, tenKH, sdtKH, diachiKH,ngaygio);
         }
@@ -26,25 +26,41 @@ namespace Cuahangbandoanvat.BUS
         {
            return hdDAL.Laydanhsach();
         }
-        public List<string> LayChiTietHoaDon(string maHD)
+        public void LayChiTietHoaDon(string maHD)
         {
-            return hdDAL.HienchitietHD(maHD);
+             hdDAL.HienchitietHD(maHD);
         }
-        public string TimkiemKHtheohoadon(string s)
+        public void TimkiemKHtheohoadon(string s)
         {
-            return hdDAL.TimkiemKHtheohoadon(s);
+            hdDAL.TimkiemKHtheohoadon(s);
         }
-        public string Timkiemhoadon(string s)
+        public void Timkiemhoadon(string s)
         {
-            return hdDAL.Timkiemhoadon(s);
+            hdDAL.Timkiemhoadon(s);
         }
-        public string Kiemtra(string s)
+        public string KiemtramaHD(string s)
         {
             return hdDAL.KiemTra(s);
         }
-        //public void SuaChitietHD(string maHD,string maKH,string maHH,int soluong)
-        //{
-        //    hdDAL.SuaChitiettrongHD(maHD, maKH, maHH, soluong);
-        //}
+        public string KiemtrathongtinHD(string s)
+        {
+            return hdDAL.KiemtrathongtinHD(s);
+        }
+        public double Tongtien(string s)
+        {
+            return hdDAL.Tongtien(s);
+        }
+        public bool kiemtrachuoi(string s)
+        {
+            return hdDAL.checkNum(s);
+        }
+        public string kiemtramaKH(string s)
+        {
+            return hdDAL.KiemtramaKH(s);
+        }
+        public void LaythongtinHD(string s)
+        {
+            hdDAL.LaythongtinHD(s);
+        }
     }
 }

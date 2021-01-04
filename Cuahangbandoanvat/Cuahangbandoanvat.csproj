@@ -47,6 +47,7 @@
     <Compile Include="BUS\HoaDonBUS.cs" />
     <Compile Include="BUS\KhachhangBUS.cs" />
     <Compile Include="BUS\LoaiHangBUS.cs" />
+    <Compile Include="BUS\ThongkeBUS.cs" />
     <Compile Include="DAL\HangHoaDAL.cs" />
     <Compile Include="DAL\HoaDonDAL.cs" />
     <Compile Include="DAL\KhachHangDAL.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="GUI\HoaDonGUI.cs" />
     <Compile Include="GUI\KhachHangGUI.cs" />
     <Compile Include="GUI\LoaiHangGUI.cs" />
+    <Compile Include="GUI\ThongKeGUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
