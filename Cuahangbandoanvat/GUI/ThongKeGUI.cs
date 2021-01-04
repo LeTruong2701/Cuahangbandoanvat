@@ -41,9 +41,6 @@ namespace Cuahangbandoanvat.GUI
                 Console.Write("\n\t\t║ ║              ║   ║                              ║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ║ 4.║     QUAY LẠI MENU CHÍNH      ║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ║___║______________________________║                 ║ ║");
-                Console.Write("\n\t\t║ ║              ║   ║                              ║                 ║ ║");
-                Console.Write("\n\t\t║ ║              ║ 5.║     QUAY LẠI MENU CHÍNH      ║                 ║ ║");
-                Console.Write("\n\t\t║ ║              ║___║______________________________║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ║   ║ Bấm phím theo số để chọn:    ║                 ║ ║");
                 Console.Write("\n\t\t║ ║              ╚═══╩══════════════════════════════╝                 ║ ║");
                 Console.Write("\n\t\t║ ║                                                                   ║ ║");
@@ -53,7 +50,7 @@ namespace Cuahangbandoanvat.GUI
                 Console.Write("\n\t\t║ ╚═══════════════════════════════════════════════════════════════════╝ ║");
                 Console.Write("\n\t\t║                                                                       ║");
                 Console.Write("\n\t\t╚═══════════════════════════════════════════════════════════════════════╝");
-                Console.SetCursorPosition(65, 26);
+                Console.SetCursorPosition(65, 23);
                 char key = char.ToUpper(Console.ReadKey(true).KeyChar);
                 switch (key)
                 {
@@ -61,7 +58,7 @@ namespace Cuahangbandoanvat.GUI
                         //case '2': ThemLoaiHang(); Console.ReadKey(); break;
                         //case '3': SuaLoaiHang(); Console.ReadKey(); break;
                         //case '4': XoaLoaiHang(); Console.ReadKey(); break;
-                        //case '5': kt = true; break;
+                        case '4': kt = true; break;
                 }
             }
         }
@@ -107,7 +104,7 @@ namespace Cuahangbandoanvat.GUI
                 Console.Write("\n\t\t║ ╚═══════════════════════════════════════════════════════════════════╝ ║");
                 Console.Write("\n\t\t║                                                                       ║");
                 Console.Write("\n\t\t╚═══════════════════════════════════════════════════════════════════════╝");
-                Console.SetCursorPosition(65, 26);
+                Console.SetCursorPosition(65, 23);
                 char key = char.ToUpper(Console.ReadKey(true).KeyChar);
                 switch (key)
                 {
@@ -115,14 +112,14 @@ namespace Cuahangbandoanvat.GUI
                         //case '2': ThemLoaiHang(); Console.ReadKey(); break;
                         //case '3': SuaLoaiHang(); Console.ReadKey(); break;
                         //case '4': XoaLoaiHang(); Console.ReadKey(); break;
-                        //case '5': kt = true; break;
+                        case '4': kt = true; break;
                 }
             }
         }
 
         public void Tongthunhaptheonam()
         {
-            
+            //
             Console.Clear();
             Console.WriteLine("\t\t╔══════════════════════════════════════════════════════╗");
             Console.WriteLine("\t\t║                      TỔNG THU NHẬP                   ║");
